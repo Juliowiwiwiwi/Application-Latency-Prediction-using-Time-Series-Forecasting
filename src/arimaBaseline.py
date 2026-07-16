@@ -43,4 +43,4 @@ def run_baseline_model(csv_path):
     plt.show()
 
 if __name__ == "__main__":
-    run_baseline_model('DataSets/latency_data_production_grade.csv')
+    run_baseline_model('DataSets/latency_data.csv')
