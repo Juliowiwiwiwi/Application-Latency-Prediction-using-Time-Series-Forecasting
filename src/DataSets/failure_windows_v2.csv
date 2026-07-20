@@ -1,0 +1,13 @@
+name,start_day,duration_hours,start_idx,end_idx,latency_impact
+Memory Leak #1,8,18,2304,2520,0.8
+Memory Leak #2,45,16,12960,13152,0.75
+CPU Spike #1,15,6,4320,4392,1.8
+CPU Spike #2,62,5,17856,17916,1.6
+Database Lock #1,24,12,6912,7056,1.5
+Database Lock #2,68,10,19584,19704,1.4
+Request Flood #1,32,8,9216,9312,0.6
+Request Flood #2,75,7,21600,21684,0.55
+Cascading Failure #1,38,9,10944,11052,2.0
+Cascading Failure #2,80,8,23040,23136,1.9
+Thermal Throttle #1,52,11,14976,15108,0.85
+Thermal Throttle #2,85,10,24480,24600,0.8
