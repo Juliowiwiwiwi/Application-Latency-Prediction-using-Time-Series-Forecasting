@@ -1,0 +1,194 @@
+Beginning AutoGluon training... Time limit = 300s
+AutoGluon will save models to '/kaggle/working/autogluon-latency-model'
+=================== System Info ===================
+AutoGluon Version:  1.5.0
+Python Version:     3.12.13
+Operating System:   Linux
+Platform Machine:   x86_64
+Platform Version:   #1 SMP Sat May 30 15:40:53 UTC 2026
+CPU Count:          4
+Pytorch Version:    2.9.1+cu128
+CUDA Version:       12.8
+GPU Memory:         GPU 0: 14.56/14.56 GB | GPU 1: 14.56/14.56 GB
+Total GPU Memory:   Free: 29.12 GB, Allocated: 0.00 GB, Total: 29.12 GB
+GPU Count:          2
+Memory Avail:       29.79 GB / 31.35 GB (95.0%)
+Disk Space Avail:   19.50 GB / 19.52 GB (99.9%)
+===================================================
+Setting presets to: medium_quality
+
+Fitting with arguments:
+{'enable_ensemble': True,
+ 'eval_metric': MASE,
+ 'hyperparameters': 'light',
+ 'known_covariates_names': [],
+ 'num_val_windows': 1,
+ 'prediction_length': 12,
+ 'quantile_levels': [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],
+ 'random_seed': 123,
+ 'refit_every_n_windows': 1,
+ 'refit_full': False,
+ 'skip_model_selection': False,
+ 'target': 'p95_latency_ms',
+ 'time_limit': 300,
+ 'verbosity': 2}
+
+Inferred time series frequency: '5min'
+Provided train_data has 25920 rows, 1 time series. Median time series length is 25920 (min=25920, max=25920). 
+
+Provided data contains following columns:
+	target: 'p95_latency_ms'
+	past_covariates:
+		categorical:        []
+		continuous (float): ['request_count', 'active_users', 'cpu_usage', 'memory_usage', 'db_query_time_ms', 'p50_latency_ms', ...]
+
+To learn how to fix incorrectly inferred types, please see documentation for TimeSeriesPredictor.fit
+
+AutoGluon will gauge predictive performance using evaluation metric: 'MASE'
+	This metric's sign has been flipped to adhere to being higher_is_better. The metric score can be multiplied by -1 to get the metric value.
+===================================================
+
+Starting training. Start time is 2026-07-21 08:51:24
+Models that will be trained: ['SeasonalNaive', 'RecursiveTabular', 'DirectTabular', 'ETS', 'Theta', 'Chronos2', 'TemporalFusionTransformer']
+Training timeseries model SeasonalNaive. Training for up to 36.4s of the 291.1s of remaining time.
+	-0.2431       = Validation score (-MASE)
+	0.04    s     = Training runtime
+	1.93    s     = Validation (prediction) runtime
+Training timeseries model RecursiveTabular. Training for up to 41.3s of the 289.1s of remaining time.
+	-0.2519       = Validation score (-MASE)
+	1.42    s     = Training runtime
+	0.09    s     = Validation (prediction) runtime
+Training timeseries model DirectTabular. Training for up to 47.9s of the 287.6s of remaining time.
+	-0.2251       = Validation score (-MASE)
+	2.21    s     = Training runtime
+	0.22    s     = Validation (prediction) runtime
+Training timeseries model ETS. Training for up to 57.0s of the 285.1s of remaining time.
+	-0.1143       = Validation score (-MASE)
+	0.03    s     = Training runtime
+	24.74   s     = Validation (prediction) runtime
+Training timeseries model Theta. Training for up to 65.1s of the 260.4s of remaining time.
+	-0.1069       = Validation score (-MASE)
+	0.03    s     = Training runtime
+	2.29    s     = Validation (prediction) runtime
+Training timeseries model Chronos2. Training for up to 86.0s of the 258.0s of remaining time.
+	-0.2071       = Validation score (-MASE)
+	18.49   s     = Training runtime
+	0.70    s     = Validation (prediction) runtime
+Training timeseries model TemporalFusionTransformer. Training for up to 119.4s of the 238.8s of remaining time.
+	-0.2086       = Validation score (-MASE)
+	102.32  s     = Training runtime
+	0.08    s     = Validation (prediction) runtime
+Fitting 1 ensemble(s), in 1 layers.
+Training ensemble model WeightedEnsemble. Training for up to 136.3s.
+	Ensemble weights: {'ETS': 0.54, 'Theta': 0.46}
+	-0.0988       = Validation score (-MASE)
+	0.29    s     = Training runtime
+	27.04   s     = Validation (prediction) runtime
+Training complete. Models trained: ['SeasonalNaive', 'RecursiveTabular', 'DirectTabular', 'ETS', 'Theta', 'Chronos2', 'TemporalFusionTransformer', 'WeightedEnsemble']
+Total runtime: 160.93 s
+Best model: WeightedEnsemble
+Best model score: -0.0988
+Model not specified in predict, will default to the model with the best validation score: WeightedEnsemble
+Additional data provided, testing on additional data. Resulting leaderboard will be sorted according to test score (`score_test`).
+Beginning AutoGluon training... Time limit = 600s
+AutoGluon will save models to '/kaggle/working/autogluon_latency_advanced'
+=================== System Info ===================
+AutoGluon Version:  1.5.0
+Python Version:     3.12.13
+Operating System:   Linux
+Platform Machine:   x86_64
+Platform Version:   #1 SMP Sat May 30 15:40:53 UTC 2026
+CPU Count:          4
+Pytorch Version:    2.9.1+cu128
+CUDA Version:       12.8
+GPU Memory:         GPU 0: 14.45/14.56 GB | GPU 1: 14.56/14.56 GB
+Total GPU Memory:   Free: 29.01 GB, Allocated: 0.12 GB, Total: 29.12 GB
+GPU Count:          2
+Memory Avail:       27.66 GB / 31.35 GB (88.2%)
+Disk Space Avail:   19.50 GB / 19.52 GB (99.9%)
+===================================================
+
+Fitting with arguments:
+{'enable_ensemble': True,
+ 'eval_metric': MASE,
+ 'hyperparameters': {'Chronos': {'model_path': 'amazon/chronos-bolt-small'},
+                     'DLinear': {},
+                     'DeepAR': {},
+                     'DirectTabular': {'tabular_hyperparameters': {'GBDT': {},
+                                                                   'XGB': {}}},
+                     'PatchTST': {},
+                     'RecursiveTabular': {'tabular_hyperparameters': {'CAT': {},
+                                                                      'GBDT': {},
+                                                                      'XGB': {}}},
+                     'TemporalFusionTransformer': {}},
+ 'known_covariates_names': [],
+ 'num_val_windows': 1,
+ 'prediction_length': 12,
+ 'quantile_levels': [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],
+ 'random_seed': 123,
+ 'refit_every_n_windows': 1,
+ 'refit_full': False,
+ 'skip_model_selection': False,
+ 'target': 'p95_latency_ms',
+ 'time_limit': 600,
+ 'verbosity': 2}
+
+Inferred time series frequency: '5min'
+Provided train_data has 25920 rows, 1 time series. Median time series length is 25920 (min=25920, max=25920). 
+
+Provided data contains following columns:
+	target: 'p95_latency_ms'
+	past_covariates:
+		categorical:        []
+		continuous (float): ['request_count', 'active_users', 'cpu_usage', 'memory_usage', 'db_query_time_ms', 'p50_latency_ms', ...]
+
+To learn how to fix incorrectly inferred types, please see documentation for TimeSeriesPredictor.fit
+
+AutoGluon will gauge predictive performance using evaluation metric: 'MASE'
+	This metric's sign has been flipped to adhere to being higher_is_better. The metric score can be multiplied by -1 to get the metric value.
+===================================================
+
+Starting training. Start time is 2026-07-21 08:54:52
+Models that will be trained: ['RecursiveTabular', 'DirectTabular', 'Chronos[amazon__chronos-bolt-small]', 'TemporalFusionTransformer', 'DeepAR', 'PatchTST', 'DLinear']
+Training timeseries model RecursiveTabular. Training for up to 75.0s of the 600.0s of remaining time.
+RecursiveTabular/W0 ignores following hyperparameters: ['tabular_hyperparameters']. See the documentation for RecursiveTabular/W0 for the list of supported hyperparameters.
+	-0.2519       = Validation score (-MASE)
+	1.63    s     = Training runtime
+	0.08    s     = Validation (prediction) runtime
+Training timeseries model DirectTabular. Training for up to 85.5s of the 598.3s of remaining time.
+DirectTabular/W0 ignores following hyperparameters: ['tabular_hyperparameters']. See the documentation for DirectTabular/W0 for the list of supported hyperparameters.
+	-0.2251       = Validation score (-MASE)
+	2.48    s     = Training runtime
+	0.22    s     = Validation (prediction) runtime
+Training timeseries model Chronos[amazon__chronos-bolt-small]. Training for up to 99.3s of the 595.5s of remaining time.
+	-0.2131       = Validation score (-MASE)
+	1.33    s     = Training runtime
+	3.94    s     = Validation (prediction) runtime
+Training timeseries model TemporalFusionTransformer. Training for up to 118.1s of the 590.3s of remaining time.
+	-0.1336       = Validation score (-MASE)
+	68.75   s     = Training runtime
+	0.08    s     = Validation (prediction) runtime
+Training timeseries model DeepAR. Training for up to 130.4s of the 521.4s of remaining time.
+	-0.2011       = Validation score (-MASE)
+	59.39   s     = Training runtime
+	0.08    s     = Validation (prediction) runtime
+Training timeseries model PatchTST. Training for up to 154.0s of the 461.9s of remaining time.
+	-0.1420       = Validation score (-MASE)
+	62.47   s     = Training runtime
+	0.01    s     = Validation (prediction) runtime
+Training timeseries model DLinear. Training for up to 199.7s of the 399.4s of remaining time.
+	-0.1152       = Validation score (-MASE)
+	54.26   s     = Training runtime
+	0.01    s     = Validation (prediction) runtime
+Fitting 1 ensemble(s), in 1 layers.
+Training ensemble model WeightedEnsemble. Training for up to 345.0s.
+	Ensemble weights: {'DLinear': 1.0}
+	-0.1152       = Validation score (-MASE)
+	0.29    s     = Training runtime
+	0.01    s     = Validation (prediction) runtime
+Training complete. Models trained: ['RecursiveTabular', 'DirectTabular', 'Chronos[amazon__chronos-bolt-small]', 'TemporalFusionTransformer', 'DeepAR', 'PatchTST', 'DLinear', 'WeightedEnsemble']
+Total runtime: 255.37 s
+Best model: DLinear
+Best model score: -0.1152
+Model not specified in predict, will default to the model with the best validation score: DLinear
+Additional data provided, testing on additional data. Resulting leaderboard will be sorted according to test score (`score_test`).
